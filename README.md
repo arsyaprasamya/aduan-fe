@@ -1,8 +1,8 @@
-## Minimal [(Free version)](https://minimal-kit-react.vercel.app/)
+## Aduan with Minimal Library
 
-![license](https://img.shields.io/badge/license-MIT-blue.svg)
+[Minimal Library source](https://minimal-kit-react.vercel.app/)
 
-> Free React Admin Dashboard made with Material-UI components and React.
+> Dashboard Aduan and View List of Pengaduan
 
 ![preview](public/static/preview.png)
 
