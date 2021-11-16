@@ -23,7 +23,10 @@ import {
   FormControl,
   InputLabel,
   Select,
-  MenuItem
+  MenuItem,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails
 } from '@mui/material';
 // components
 import { Box } from '@mui/system';
@@ -39,7 +42,7 @@ import {
 } from '../components/_dashboard/app';
 //
 import USERLIST from '../_mocks_/user';
-import './Dashboard.scss';
+import './Dashboard.css';
 
 // ----------------------------------------------------------------------
 
@@ -219,31 +222,169 @@ const Dashboard = () => {
         </Grid>
       </Container>
       <br /> <br />
-      Filter = Bulan, Tahun <br />
-      Total Aduan, Total Saran/Masukkan, Total Komplain/Pengaduan <br />
-      Aduan per-Pengelola <br />
-      Aduan P1: 2000 <br />
-      Aduan P2: 1000 <br />
-      Aduan P3: 4000 <br />
-      Aduan P4: xxxx <br />
-      ... See More <br />
-      <br /> <br />
-      <Container>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWeeklySales />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <AppNewUsers />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <AppItemOrders />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <AppBugReports />
-          </Grid>
-        </Grid>
-      </Container>
+      <div className="aduan-perlembaga-wrapper">
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<span>V</span>}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography>Aduan Per-Lembaga</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              <div className="card-row">
+                <div
+                  className="card-wrapper"
+                  style={{
+                    backgroundColor: '#aabbcc'
+                  }}
+                >
+                  <div className="icon">
+                    <div
+                      className="image"
+                      style={{
+                        backgroundImage:
+                          'url(https://img.lovepik.com/element/45004/4393.png_300.png)'
+                      }}
+                    />
+                  </div>
+                  <div className="text">
+                    <div className="title">Total Aduan</div>
+                    <div className="total">1000</div>
+                  </div>
+                </div>
+              </div>
+              <div className="card-row">
+                <div
+                  className="card-wrapper"
+                  style={{
+                    backgroundColor: '#112233'
+                  }}
+                >
+                  <div className="icon">
+                    <div
+                      className="image"
+                      style={{
+                        backgroundImage:
+                          'url(https://img.lovepik.com/element/45004/4393.png_300.png)'
+                      }}
+                    />
+                  </div>
+                  <div className="text">
+                    <div className="title">Aduan Baru</div>
+                    <div className="total">2000</div>
+                  </div>
+                </div>
+                <div
+                  className="card-wrapper"
+                  style={{
+                    backgroundColor: '#bb00ee'
+                  }}
+                >
+                  <div className="icon">
+                    <div
+                      className="image"
+                      style={{
+                        backgroundImage:
+                          'url(https://img.lovepik.com/element/45004/4393.png_300.png)'
+                      }}
+                    />
+                  </div>
+                  <div className="text">
+                    <div className="title">Assigned</div>
+                    <div className="total">3000</div>
+                  </div>
+                </div>
+              </div>
+              <div className="card-row">
+                <div
+                  className="card-wrapper"
+                  style={{
+                    backgroundColor: '#00ffdd'
+                  }}
+                >
+                  <div className="icon">
+                    <div
+                      className="image"
+                      style={{
+                        backgroundImage:
+                          'url(https://img.lovepik.com/element/45004/4393.png_300.png)'
+                      }}
+                    />
+                  </div>
+                  <div className="text">
+                    <div className="title">Diterima</div>
+                    <div className="total">4000</div>
+                  </div>
+                </div>
+                <div
+                  className="card-wrapper"
+                  style={{
+                    backgroundColor: '#eeffbb'
+                  }}
+                >
+                  <div className="icon">
+                    <div
+                      className="image"
+                      style={{
+                        backgroundImage:
+                          'url(https://img.lovepik.com/element/45004/4393.png_300.png)'
+                      }}
+                    />
+                  </div>
+                  <div className="text">
+                    <div className="title">Diproses</div>
+                    <div className="total">5000</div>
+                  </div>
+                </div>
+              </div>
+              <div className="card-row">
+                <div
+                  className="card-wrapper"
+                  style={{
+                    backgroundColor: '#ff0006'
+                  }}
+                >
+                  <div className="icon">
+                    <div
+                      className="image"
+                      style={{
+                        backgroundImage:
+                          'url(https://img.lovepik.com/element/45004/4393.png_300.png)'
+                      }}
+                    />
+                  </div>
+                  <div className="text">
+                    <div className="title">Selesai</div>
+                    <div className="total">6000</div>
+                  </div>
+                </div>
+                <div
+                  className="card-wrapper"
+                  style={{
+                    backgroundColor: '#22aabb'
+                  }}
+                >
+                  <div className="icon">
+                    <div
+                      className="image"
+                      style={{
+                        backgroundImage:
+                          'url(https://img.lovepik.com/element/45004/4393.png_300.png)'
+                      }}
+                    />
+                  </div>
+                  <div className="text">
+                    <div className="title">Eskalasi</div>
+                    <div className="total">7000</div>
+                  </div>
+                </div>
+              </div>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+      </div>
       <br /> <br />
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
