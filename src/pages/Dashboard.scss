@@ -1,0 +1,27 @@
+.dashboard-wrapper .filter-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-wrapper .filter-wrapper > * {
+  flex: 1;
+}
+
+.dashboard-wrapper .filter-wrapper > *:not(:first-child) {
+  margin-left: 10px;
+}
+
+.dashboard-wrapper {
+  .filter-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > * {
+      flex: 1;
+      &:not(:first-child) {
+        margin-left: 10px;
+      }
+    }
+  }
+}
