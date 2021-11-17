@@ -237,7 +237,7 @@ const Dashboard = () => {
                 <div
                   className="card-wrapper"
                   style={{
-                    backgroundColor: '#aabbcc'
+                    backgroundColor: '#ff0000'
                   }}
                 >
                   <div className="icon">
@@ -259,7 +259,7 @@ const Dashboard = () => {
                 <div
                   className="card-wrapper"
                   style={{
-                    backgroundColor: '#112233'
+                    backgroundColor: '#ff4400'
                   }}
                 >
                   <div className="icon">
@@ -279,7 +279,7 @@ const Dashboard = () => {
                 <div
                   className="card-wrapper"
                   style={{
-                    backgroundColor: '#bb00ee'
+                    backgroundColor: '#ffaa00'
                   }}
                 >
                   <div className="icon">
@@ -301,7 +301,7 @@ const Dashboard = () => {
                 <div
                   className="card-wrapper"
                   style={{
-                    backgroundColor: '#00ffdd'
+                    backgroundColor: '#aaff00'
                   }}
                 >
                   <div className="icon">
@@ -321,7 +321,7 @@ const Dashboard = () => {
                 <div
                   className="card-wrapper"
                   style={{
-                    backgroundColor: '#eeffbb'
+                    backgroundColor: '#00ff44'
                   }}
                 >
                   <div className="icon">
@@ -343,7 +343,7 @@ const Dashboard = () => {
                 <div
                   className="card-wrapper"
                   style={{
-                    backgroundColor: '#ff0006'
+                    backgroundColor: '#00aaaa'
                   }}
                 >
                   <div className="icon">
@@ -363,7 +363,7 @@ const Dashboard = () => {
                 <div
                   className="card-wrapper"
                   style={{
-                    backgroundColor: '#22aabb'
+                    backgroundColor: '#0044aa'
                   }}
                 >
                   <div className="icon">
