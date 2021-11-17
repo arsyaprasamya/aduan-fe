@@ -68,11 +68,11 @@
 }
 .dashboard-wrapper .aduan-perlembaga-wrapper .card-row .card-wrapper .icon .image {
   content: " ";
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   background-color: white;
   margin-right: 8px;
-  border-radius: 10px;
+  border-radius: 7px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

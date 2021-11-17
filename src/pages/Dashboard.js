@@ -245,7 +245,7 @@ const Dashboard = () => {
                       className="image"
                       style={{
                         backgroundImage:
-                          'url(https://img.lovepik.com/element/45004/4393.png_300.png)'
+                          'url(https://cdn.iconscout.com/icon/premium/png-256-thumb/paper-509-763466.png)'
                       }}
                     />
                   </div>
@@ -267,7 +267,7 @@ const Dashboard = () => {
                       className="image"
                       style={{
                         backgroundImage:
-                          'url(https://img.lovepik.com/element/45004/4393.png_300.png)'
+                          'url(https://cdn.iconscout.com/icon/premium/png-256-thumb/paper-509-763466.png)'
                       }}
                     />
                   </div>
@@ -287,7 +287,7 @@ const Dashboard = () => {
                       className="image"
                       style={{
                         backgroundImage:
-                          'url(https://img.lovepik.com/element/45004/4393.png_300.png)'
+                          'url(https://cdn.iconscout.com/icon/premium/png-256-thumb/paper-509-763466.png)'
                       }}
                     />
                   </div>
@@ -309,7 +309,7 @@ const Dashboard = () => {
                       className="image"
                       style={{
                         backgroundImage:
-                          'url(https://img.lovepik.com/element/45004/4393.png_300.png)'
+                          'url(https://cdn.iconscout.com/icon/premium/png-256-thumb/paper-509-763466.png)'
                       }}
                     />
                   </div>
@@ -329,7 +329,7 @@ const Dashboard = () => {
                       className="image"
                       style={{
                         backgroundImage:
-                          'url(https://img.lovepik.com/element/45004/4393.png_300.png)'
+                          'url(https://cdn.iconscout.com/icon/premium/png-256-thumb/paper-509-763466.png)'
                       }}
                     />
                   </div>
@@ -351,7 +351,7 @@ const Dashboard = () => {
                       className="image"
                       style={{
                         backgroundImage:
-                          'url(https://img.lovepik.com/element/45004/4393.png_300.png)'
+                          'url(https://cdn.iconscout.com/icon/premium/png-256-thumb/paper-509-763466.png)'
                       }}
                     />
                   </div>
@@ -371,7 +371,7 @@ const Dashboard = () => {
                       className="image"
                       style={{
                         backgroundImage:
-                          'url(https://img.lovepik.com/element/45004/4393.png_300.png)'
+                          'url(https://cdn.iconscout.com/icon/premium/png-256-thumb/paper-509-763466.png)'
                       }}
                     />
                   </div>
