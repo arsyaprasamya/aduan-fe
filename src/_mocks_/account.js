@@ -2,7 +2,7 @@
 
 const account = {
   displayName: 'Admin',
-  email: 'demo@minimals.cc',
+  email: 'admin@pengaduan.com',
   photoURL: '/static/mock-images/avatars/avatar_default.jpg'
 };
 

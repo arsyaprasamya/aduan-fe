@@ -13,8 +13,9 @@ import NotFound from './pages/Page404';
 import Dashboard from './pages/Dashboard';
 import Main from './pages/Main';
 import AduanCreate from './pages/AduanCreate';
-import Pelapor from './pages/Pelapor';
 import Roles from './pages/Roles';
+import AduanList from './pages/AduanList';
+import Lembaga from './pages/Lembaga';
 
 // ----------------------------------------------------------------------
 
@@ -35,14 +36,15 @@ export default function Router() {
         { path: 'dashboard', element: <Dashboard /> },
         { path: 'login', element: <Login /> },
         { path: 'register', element: <Register /> },
+        { path: 'aduan/list', element: <AduanList /> },
         { path: 'aduan/create', element: <AduanCreate /> },
-        { path: 'pelapor', element: <Pelapor /> },
+        { path: 'pelapor', element: <User /> },
+        { path: 'lembaga', element: <Lembaga /> },
         { path: 'roles', element: <Roles /> },
         { path: '404', element: <NotFound /> },
         { path: '*', element: <Navigate to="/404" /> },
 
         { path: 'app', element: <DashboardApp /> },
-        { path: 'user', element: <User /> },
         { path: 'products', element: <Products /> },
         { path: 'blog', element: <Blog /> }
       ]

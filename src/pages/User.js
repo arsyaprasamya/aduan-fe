@@ -25,9 +25,8 @@ import Page from '../components/Page';
 import Label from '../components/Label';
 import Scrollbar from '../components/Scrollbar';
 import SearchNotFound from '../components/SearchNotFound';
-import { UserListHead, UserListToolbar, UserMoreMenu } from '../components/_dashboard/user';
+import { UserListHead, UserListToolbar, UserMoreMenu } from '../components/_dashboard/user/index';
 //
-import USERLIST from '../_mocks_/user';
 
 // ----------------------------------------------------------------------
 
@@ -71,13 +70,36 @@ function applySortFilter(array, comparator, query) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function User() {
+const User = () => {
+  const [keyword, setKeyword] = useState('');
+  const [totalRow, setTotalRow] = useState(0);
+  const [userItems, setUserItems] = useState([]);
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState('asc');
   const [selected, setSelected] = useState([]);
   const [orderBy, setOrderBy] = useState('name');
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  const fetchPelapor = (currKeyword = null, currPage = -1, currRowsPerPage = 0) => {
+    if (currKeyword === null) {
+      currKeyword = keyword;
+    } else if (currPage === -1) {
+      currPage = page;
+    } else if (currRowsPerPage === 0) {
+      currRowsPerPage = rowsPerPage;
+    }
+
+    User.getAllPelapor(currKeyword, currPage, currRowsPerPage)
+      .then((result) => {
+        setUserItems(result.data.users);
+        setTotalRow(result.data.total);
+      })
+      .catch((_) => {
+        setUserItems([]);
+        setTotalRow(0);
+      });
+  };
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -87,7 +109,7 @@ export default function User() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = USERLIST.map((n) => n.name);
+      const newSelecteds = userItems.map((n) => n.name);
       setSelected(newSelecteds);
       return;
     }
@@ -125,14 +147,14 @@ export default function User() {
     setFilterName(event.target.value);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USERLIST.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - userItems.length) : 0;
 
-  const filteredUsers = applySortFilter(USERLIST, getComparator(order, orderBy), filterName);
+  const filteredUsers = applySortFilter(userItems, getComparator(order, orderBy), filterName);
 
   const isUserNotFound = filteredUsers.length === 0;
 
   return (
-    <Page title="User | Minimal-UI">
+    <Page title="User">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
@@ -162,7 +184,7 @@ export default function User() {
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
-                  rowCount={USERLIST.length}
+                  rowCount={userItems.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
                   onSelectAllClick={handleSelectAllClick}
@@ -171,7 +193,7 @@ export default function User() {
                   {filteredUsers
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
-                      const { id, name, role, status, company, avatarUrl, isVerified } = row;
+                      const { id, name, role, status, avatarUrl, isVerified } = row;
                       const isItemSelected = selected.indexOf(name) !== -1;
 
                       return (
@@ -197,7 +219,6 @@ export default function User() {
                               </Typography>
                             </Stack>
                           </TableCell>
-                          <TableCell align="left">{company}</TableCell>
                           <TableCell align="left">{role}</TableCell>
                           <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
                           <TableCell align="left">
@@ -237,7 +258,7 @@ export default function User() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={USERLIST.length}
+            count={userItems.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
@@ -247,4 +268,6 @@ export default function User() {
       </Container>
     </Page>
   );
-}
+};
+
+export default User;
