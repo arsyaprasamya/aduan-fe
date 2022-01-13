@@ -18,8 +18,18 @@ const sidebarConfig = [
     icon: getIcon(pieChart2Fill)
   },
   {
+    title: 'aduan',
+    path: '/aduan/list',
+    icon: getIcon(pieChart2Fill)
+  },
+  {
     title: 'pelapor',
     path: '/pelapor',
+    icon: getIcon(peopleFill)
+  },
+  {
+    title: 'lembaga',
+    path: '/lembaga',
     icon: getIcon(peopleFill)
   },
   {
