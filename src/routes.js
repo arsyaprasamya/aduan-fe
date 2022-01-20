@@ -9,13 +9,13 @@ import DashboardApp from './pages/DashboardApp';
 import Products from './pages/Products';
 import Blog from './pages/Blog';
 import User from './pages/User';
+import Lembaga from './pages/Lembaga';
 import NotFound from './pages/Page404';
 import Dashboard from './pages/Dashboard';
 import Main from './pages/Main';
 import AduanCreate from './pages/AduanCreate';
 import Roles from './pages/Roles';
 import AduanList from './pages/AduanList';
-import Lembaga from './pages/Lembaga';
 
 // ----------------------------------------------------------------------
 

@@ -1,7 +1,6 @@
-import { filter } from 'lodash';
 import { Icon } from '@iconify/react';
 import { sentenceCase } from 'change-case';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import plusFill from '@iconify/icons-eva/plus-fill';
 import { Link as RouterLink } from 'react-router-dom';
 // material
@@ -9,7 +8,6 @@ import {
   Card,
   Table,
   Stack,
-  Avatar,
   Button,
   Checkbox,
   TableRow,
@@ -21,6 +19,7 @@ import {
   TablePagination
 } from '@mui/material';
 // components
+import { getAllPelapor } from '../actions/user';
 import Page from '../components/Page';
 import Label from '../components/Label';
 import Scrollbar from '../components/Scrollbar';
@@ -31,47 +30,15 @@ import { UserListHead, UserListToolbar, UserMoreMenu } from '../components/_dash
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
-  { id: 'role', label: 'Role', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
+  { id: 'email', label: 'Email', alignRight: false },
   { id: 'status', label: 'Status', alignRight: false },
+  { id: 'verifikasi', label: 'Verifikasi', alignRight: false },
   { id: '' }
 ];
 
 // ----------------------------------------------------------------------
 
-function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
-
-function getComparator(order, orderBy) {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-function applySortFilter(array, comparator, query) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) return order;
-    return a[1] - b[1];
-  });
-  if (query) {
-    return filter(array, (_user) => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1);
-  }
-  return stabilizedThis.map((el) => el[0]);
-}
-
 const User = () => {
-  const [keyword, setKeyword] = useState('');
   const [totalRow, setTotalRow] = useState(0);
   const [userItems, setUserItems] = useState([]);
   const [page, setPage] = useState(0);
@@ -81,16 +48,8 @@ const User = () => {
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const fetchPelapor = (currKeyword = null, currPage = -1, currRowsPerPage = 0) => {
-    if (currKeyword === null) {
-      currKeyword = keyword;
-    } else if (currPage === -1) {
-      currPage = page;
-    } else if (currRowsPerPage === 0) {
-      currRowsPerPage = rowsPerPage;
-    }
-
-    User.getAllPelapor(currKeyword, currPage, currRowsPerPage)
+  const fetchPelapor = () => {
+    getAllPelapor(filterName, page, totalRow)
       .then((result) => {
         setUserItems(result.data.users);
         setTotalRow(result.data.total);
@@ -100,6 +59,10 @@ const User = () => {
         setTotalRow(0);
       });
   };
+
+  useEffect(() => {
+    fetchPelapor();
+  }, [filterName, page, totalRow]);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -147,12 +110,6 @@ const User = () => {
     setFilterName(event.target.value);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - userItems.length) : 0;
-
-  const filteredUsers = applySortFilter(userItems, getComparator(order, orderBy), filterName);
-
-  const isUserNotFound = filteredUsers.length === 0;
-
   return (
     <Page title="User">
       <Container>
@@ -190,11 +147,11 @@ const User = () => {
                   onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
-                  {filteredUsers
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  {userItems
+                    // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
-                      const { id, name, role, status, avatarUrl, isVerified } = row;
-                      const isItemSelected = selected.indexOf(name) !== -1;
+                      const { id, email, status, verifikasi } = row;
+                      const isItemSelected = selected.indexOf(email) !== -1;
 
                       return (
                         <TableRow
@@ -208,19 +165,19 @@ const User = () => {
                           <TableCell padding="checkbox">
                             <Checkbox
                               checked={isItemSelected}
-                              onChange={(event) => handleClick(event, name)}
+                              onChange={(event) => handleClick(event, email)}
                             />
                           </TableCell>
                           <TableCell component="th" scope="row" padding="none">
                             <Stack direction="row" alignItems="center" spacing={2}>
-                              <Avatar alt={name} src={avatarUrl} />
+                              {/* <Avatar alt={name} src={avatarUrl} /> */}
                               <Typography variant="subtitle2" noWrap>
-                                {name}
+                                {email}
                               </Typography>
                             </Stack>
                           </TableCell>
-                          <TableCell align="left">{role}</TableCell>
-                          <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
+                          <TableCell align="left">{status}</TableCell>
+                          <TableCell align="left">{verifikasi ? 'Yes' : 'No'}</TableCell>
                           <TableCell align="left">
                             <Label
                               variant="ghost"
@@ -236,13 +193,8 @@ const User = () => {
                         </TableRow>
                       );
                     })}
-                  {emptyRows > 0 && (
-                    <TableRow style={{ height: 53 * emptyRows }}>
-                      <TableCell colSpan={6} />
-                    </TableRow>
-                  )}
                 </TableBody>
-                {isUserNotFound && (
+                {userItems.length === 0 && (
                   <TableBody>
                     <TableRow>
                       <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
